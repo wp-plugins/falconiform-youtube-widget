@@ -1,0 +1,8 @@
+/*
+* Styles for the Falconiform YouTube Widget.
+*/
+
+.ff-youtube-widget-player-iframe {
+    max-width: 100%;
+    border:    none;
+    }
