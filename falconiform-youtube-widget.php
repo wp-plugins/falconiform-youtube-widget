@@ -4,7 +4,7 @@
  * Plugin URI: http://fabulierer.de/
  * Description: Adds a widget that shows a YouTube video.
  * Author: Ronny Harbich
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author URI: http://fabulierer.de/
  * License: GPLv2 or later
  */
@@ -15,7 +15,7 @@
  */
 define( 'FF_YOUTUBE_WIDGET_ID', 'ff_youtube_widget' );
 define( 'FF_YOUTUBE_WIDGET_SLUG', 'ff-youtube-widget' );
-define( 'FF_YOUTUBE_WIDGET_VERSION', '1.0.0' );
+define( 'FF_YOUTUBE_WIDGET_VERSION', '1.0.1' );
 define( 'FF_YOUTUBE_TEXT_DOMAIN', 'ff_youtube_widget' );
 
 
@@ -89,202 +89,203 @@ class FF_YouTubeWidget extends WP_Widget {
 		);
 
 
+		// set widget settings fields: $fieldName => array($description, $fieldType, $defaultValue, $converterFunction, $validateFunction, $validValues)
+		$this->widgetFields = array(
+
+			// title
+			'title'                                      => array(
+				__( 'Widget title:', FF_YOUTUBE_TEXT_DOMAIN ),
+				'text-input',
+				'',
+				'convert_to_string',
+				'validate_string'
+			),
+
+			// video id
+			'video-id'                                   => array(
+				__( 'YouTube video ID:', FF_YOUTUBE_TEXT_DOMAIN ),
+				'text-input',
+				'kMJXap37bzw',
+				'convert_to_string',
+				'validate_video_url'
+			),
+
+			// video index
+			'video-index'                                => array(
+				__( 'Index of the video ID from dedicated settings page:', FF_YOUTUBE_TEXT_DOMAIN ),
+				'select',
+				0,
+				'convert_to_int',
+				'validate_key_in_array',
+				range( 1, self::NUMBER_OF_YOUTUBE_VIDEO_IDS ),
+			),
+
+			// take video index
+			'take-video-index'                           => array(
+				__( 'Take video from dedicated settings page via index.', FF_YOUTUBE_TEXT_DOMAIN ),
+				'checkbox',
+				0,
+				'convert_to_int',
+				'validate_in_array',
+				self::$defaultCheckboxValues
+			),
+
+			// player width
+			'player-width'                               => array(
+				__( 'Player width (in pixel, 0 for automatic width):', FF_YOUTUBE_TEXT_DOMAIN ),
+				'text-input',
+				0,
+				'convert_to_int',
+				'validate_dimension'
+			),
+
+			// player height
+			'player-height'                              => array(
+				__( 'Player height (in pixel, 0 for automatic height):', FF_YOUTUBE_TEXT_DOMAIN ),
+				'text-input',
+				0,
+				'convert_to_int',
+				'validate_dimension'
+			),
+
+			// param theme
+			self::PLAYER_PARAM_PREFIX . 'theme'          => array(
+				__( 'Player theme:', FF_YOUTUBE_TEXT_DOMAIN ),
+				'select',
+				'dark',
+				'convert_to_string',
+				'validate_key_in_array',
+				array(
+					'dark'  => __( 'Dark', FF_YOUTUBE_TEXT_DOMAIN ),
+					'light' => __( 'Light', FF_YOUTUBE_TEXT_DOMAIN ),
+				),
+			),
+
+			// param color
+			self::PLAYER_PARAM_PREFIX . 'color'          => array(
+				__( 'Color of the player’s video progress bar:', FF_YOUTUBE_TEXT_DOMAIN ),
+				'select',
+				'red',
+				'convert_to_string',
+				'validate_key_in_array',
+				array(
+					'red'   => __( 'Red', FF_YOUTUBE_TEXT_DOMAIN ),
+					'white' => __( 'White', FF_YOUTUBE_TEXT_DOMAIN ),
+				),
+			),
+
+			// param controls
+			self::PLAYER_PARAM_PREFIX . 'controls'       => array(
+				__( 'Player controls visibility:', FF_YOUTUBE_TEXT_DOMAIN ),
+				'select',
+				2,
+				'convert_to_int',
+				'validate_key_in_array',
+				array(
+					2 => __( 'Display controls, Flash player loads after user initiates video playback', FF_YOUTUBE_TEXT_DOMAIN ),
+					1 => __( 'Display controls, Flash player loads immediately', FF_YOUTUBE_TEXT_DOMAIN ),
+					0 => __( 'Hide controls, Flash player loads immediately', FF_YOUTUBE_TEXT_DOMAIN ),
+				),
+			),
+
+			// param autohide
+			self::PLAYER_PARAM_PREFIX . 'autohide'       => array(
+				__( 'Hide controls / progress bar at playback:', FF_YOUTUBE_TEXT_DOMAIN ),
+				'select',
+				2,
+				'convert_to_int',
+				'validate_key_in_array',
+				array(
+					2 => __( 'Show controls, decrease progress bar', FF_YOUTUBE_TEXT_DOMAIN ),
+					1 => __( 'Hide controls, hide progress bar', FF_YOUTUBE_TEXT_DOMAIN ),
+					0 => __( 'Show controls, show progress bar', FF_YOUTUBE_TEXT_DOMAIN ),
+				),
+			),
+
+			// param autoplay
+			self::PLAYER_PARAM_PREFIX . 'autoplay'       => array(
+				__( 'Start playback automatically.', FF_YOUTUBE_TEXT_DOMAIN ),
+				'checkbox',
+				0,
+				'convert_to_int',
+				'validate_in_array',
+				self::$defaultCheckboxValues
+			),
+
+			// param loop
+			self::PLAYER_PARAM_PREFIX . 'loop'           => array(
+				__( 'Restart the video automatically after playback ends.', FF_YOUTUBE_TEXT_DOMAIN ),
+				'checkbox',
+				0,
+				'convert_to_int',
+				'validate_in_array',
+				self::$defaultCheckboxValues
+			),
+
+			// param rel
+			self::PLAYER_PARAM_PREFIX . 'rel'            => array(
+				__( 'Show related videos after playback ends.', FF_YOUTUBE_TEXT_DOMAIN ),
+				'checkbox',
+				1,
+				'convert_to_int',
+				'validate_in_array',
+				self::$defaultCheckboxValues
+			),
+
+			// param showinfo
+			self::PLAYER_PARAM_PREFIX . 'showinfo'       => array(
+				__( 'Show video information like the video title.', FF_YOUTUBE_TEXT_DOMAIN ),
+				'checkbox',
+				1,
+				'convert_to_int',
+				'validate_in_array',
+				self::$defaultCheckboxValues
+			),
+
+			// param iv_load_policy
+			self::PLAYER_PARAM_PREFIX . 'iv_load_policy' => array(
+				__( 'Show video annotations.', FF_YOUTUBE_TEXT_DOMAIN ),
+				'checkbox',
+				1,
+				'convert_to_int',
+				'validate_in_array',
+				array( 3, 1 )
+			),
+
+			// param fs
+			self::PLAYER_PARAM_PREFIX . 'fs'             => array(
+				__( 'Show fullscreen button.', FF_YOUTUBE_TEXT_DOMAIN ),
+				'checkbox',
+				1,
+				'convert_to_int',
+				'validate_in_array',
+				self::$defaultCheckboxValues
+			),
+
+			// param modestbranding
+			self::PLAYER_PARAM_PREFIX . 'modestbranding' => array(
+				__( 'Hide YouTube logo in the controls bar.', FF_YOUTUBE_TEXT_DOMAIN ),
+				'checkbox',
+				0,
+				'convert_to_int',
+				'validate_in_array',
+				self::$defaultCheckboxValues
+			),
+
+			// param disablekb
+			self::PLAYER_PARAM_PREFIX . 'disablekb'      => array(
+				__( 'Disable keyboard control for the player.', FF_YOUTUBE_TEXT_DOMAIN ),
+				'checkbox',
+				0,
+				'convert_to_int',
+				'validate_in_array',
+				self::$defaultCheckboxValues
+			),
+
+		);
+
+
 		if ( is_admin() ) {
-			// set widget settings fields: $fieldName => array($description, $fieldType, $defaultValue, $converterFunction, $validateFunction, $validValues)
-			$this->widgetFields = array(
-
-				// title
-				'title'                                      => array(
-					__( 'Widget title:', FF_YOUTUBE_TEXT_DOMAIN ),
-					'text-input',
-					'',
-					'convert_to_string',
-					'validate_string'
-				),
-
-				// video id
-				'video-id'                                   => array(
-					__( 'YouTube video ID:', FF_YOUTUBE_TEXT_DOMAIN ),
-					'text-input',
-					'kMJXap37bzw',
-					'convert_to_string',
-					'validate_video_url'
-				),
-
-				// video index
-				'video-index'                                => array(
-					__( 'Index of the video ID from dedicated settings page:', FF_YOUTUBE_TEXT_DOMAIN ),
-					'select',
-					0,
-					'convert_to_int',
-					'validate_key_in_array',
-					range( 1, self::NUMBER_OF_YOUTUBE_VIDEO_IDS ),
-				),
-
-				// take video index
-				'take-video-index'                           => array(
-					__( 'Take video from dedicated settings page via index.', FF_YOUTUBE_TEXT_DOMAIN ),
-					'checkbox',
-					0,
-					'convert_to_int',
-					'validate_in_array',
-					self::$defaultCheckboxValues
-				),
-
-				// player width
-				'player-width'                               => array(
-					__( 'Player width (in pixel, 0 for automatic width):', FF_YOUTUBE_TEXT_DOMAIN ),
-					'text-input',
-					0,
-					'convert_to_int',
-					'validate_dimension'
-				),
-
-				// player height
-				'player-height'                              => array(
-					__( 'Player height (in pixel, 0 for automatic height):', FF_YOUTUBE_TEXT_DOMAIN ),
-					'text-input',
-					0,
-					'convert_to_int',
-					'validate_dimension'
-				),
-
-				// param theme
-				self::PLAYER_PARAM_PREFIX . 'theme'          => array(
-					__( 'Player theme:', FF_YOUTUBE_TEXT_DOMAIN ),
-					'select',
-					'dark',
-					'convert_to_string',
-					'validate_key_in_array',
-					array(
-						'dark'  => __( 'Dark', FF_YOUTUBE_TEXT_DOMAIN ),
-						'light' => __( 'Light', FF_YOUTUBE_TEXT_DOMAIN ),
-					),
-				),
-
-				// param color
-				self::PLAYER_PARAM_PREFIX . 'color'          => array(
-					__( 'Color of the player’s video progress bar:', FF_YOUTUBE_TEXT_DOMAIN ),
-					'select',
-					'red',
-					'convert_to_string',
-					'validate_key_in_array',
-					array(
-						'red'   => __( 'Red', FF_YOUTUBE_TEXT_DOMAIN ),
-						'white' => __( 'White', FF_YOUTUBE_TEXT_DOMAIN ),
-					),
-				),
-
-				// param controls
-				self::PLAYER_PARAM_PREFIX . 'controls'       => array(
-					__( 'Player controls visibility:', FF_YOUTUBE_TEXT_DOMAIN ),
-					'select',
-					2,
-					'convert_to_int',
-					'validate_key_in_array',
-					array(
-						2 => __( 'Display controls, Flash player loads after user initiates video playback', FF_YOUTUBE_TEXT_DOMAIN ),
-						1 => __( 'Display controls, Flash player loads immediately', FF_YOUTUBE_TEXT_DOMAIN ),
-						0 => __( 'Hide controls, Flash player loads immediately', FF_YOUTUBE_TEXT_DOMAIN ),
-					),
-				),
-
-				// param autohide
-				self::PLAYER_PARAM_PREFIX . 'autohide'       => array(
-					__( 'Hide controls / progress bar at playback:', FF_YOUTUBE_TEXT_DOMAIN ),
-					'select',
-					2,
-					'convert_to_int',
-					'validate_key_in_array',
-					array(
-						2 => __( 'Show controls, decrease progress bar', FF_YOUTUBE_TEXT_DOMAIN ),
-						1 => __( 'Hide controls, hide progress bar', FF_YOUTUBE_TEXT_DOMAIN ),
-						0 => __( 'Show controls, show progress bar', FF_YOUTUBE_TEXT_DOMAIN ),
-					),
-				),
-
-				// param autoplay
-				self::PLAYER_PARAM_PREFIX . 'autoplay'       => array(
-					__( 'Start playback automatically.', FF_YOUTUBE_TEXT_DOMAIN ),
-					'checkbox',
-					0,
-					'convert_to_int',
-					'validate_in_array',
-					self::$defaultCheckboxValues
-				),
-
-				// param loop
-				self::PLAYER_PARAM_PREFIX . 'loop'           => array(
-					__( 'Restart the video automatically after playback ends.', FF_YOUTUBE_TEXT_DOMAIN ),
-					'checkbox',
-					0,
-					'convert_to_int',
-					'validate_in_array',
-					self::$defaultCheckboxValues
-				),
-
-				// param rel
-				self::PLAYER_PARAM_PREFIX . 'rel'            => array(
-					__( 'Show related videos after playback ends.', FF_YOUTUBE_TEXT_DOMAIN ),
-					'checkbox',
-					1,
-					'convert_to_int',
-					'validate_in_array',
-					self::$defaultCheckboxValues
-				),
-
-				// param showinfo
-				self::PLAYER_PARAM_PREFIX . 'showinfo'       => array(
-					__( 'Show video information like the video title.', FF_YOUTUBE_TEXT_DOMAIN ),
-					'checkbox',
-					1,
-					'convert_to_int',
-					'validate_in_array',
-					self::$defaultCheckboxValues
-				),
-
-				// param iv_load_policy
-				self::PLAYER_PARAM_PREFIX . 'iv_load_policy' => array(
-					__( 'Show video annotations.', FF_YOUTUBE_TEXT_DOMAIN ),
-					'checkbox',
-					1,
-					'convert_to_int',
-					'validate_in_array',
-					array( 3, 1 )
-				),
-
-				// param fs
-				self::PLAYER_PARAM_PREFIX . 'fs'             => array(
-					__( 'Show fullscreen button.', FF_YOUTUBE_TEXT_DOMAIN ),
-					'checkbox',
-					1,
-					'convert_to_int',
-					'validate_in_array',
-					self::$defaultCheckboxValues
-				),
-
-				// param modestbranding
-				self::PLAYER_PARAM_PREFIX . 'modestbranding' => array(
-					__( 'Hide YouTube logo in the controls bar.', FF_YOUTUBE_TEXT_DOMAIN ),
-					'checkbox',
-					0,
-					'convert_to_int',
-					'validate_in_array',
-					self::$defaultCheckboxValues
-				),
-
-				// param disablekb
-				self::PLAYER_PARAM_PREFIX . 'disablekb'      => array(
-					__( 'Disable keyboard control for the player.', FF_YOUTUBE_TEXT_DOMAIN ),
-					'checkbox',
-					0,
-					'convert_to_int',
-					'validate_in_array',
-					self::$defaultCheckboxValues
-				),
-
-			);
-
 			// triggered before any other hook when a user accesses the administration interface
 			add_action( 'admin_init', array( $this, 'admin_init' ) );
 			// enqueue scripts and style for the administration interface
@@ -498,6 +499,14 @@ class FF_YouTubeWidget extends WP_Widget {
 		// print stuff before widget
 		echo( $args['before_widget'] );
 
+		// handles bug? from live widget preview where instance is empty
+		if ( count( $instance ) == 0 ) {
+			// iterate all widget setting fields
+			foreach ( $this->widgetFields as $fieldName => $field ) {
+				// set default value
+				$instance[$fieldName] = $field[2];
+			}
+		}
 
 		// filter widget title
 		$title = empty( $instance['title'] ) ? ' ' : apply_filters( 'widget_title', $instance['title'] );

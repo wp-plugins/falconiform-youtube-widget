@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Falconiform YouTube Widget\n"
-"POT-Creation-Date: 2014-02-21 14:28+0100\n"
-"PO-Revision-Date: 2014-02-21 14:28+0100\n"
+"POT-Creation-Date: 2014-04-17 11:45+0100\n"
+"PO-Revision-Date: 2014-04-17 11:45+0100\n"
 "Last-Translator: Ronny <info@falconiform.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -26,172 +26,172 @@ msgstr "YouTube-Video"
 msgid "Show a YouTube video."
 msgstr "Ein YouTube-Video anzeigen lassen."
 
-#: falconiform-youtube-widget.php:98
+#: falconiform-youtube-widget.php:97
 msgid "Widget title:"
 msgstr "Widget-Titel:"
 
-#: falconiform-youtube-widget.php:107
+#: falconiform-youtube-widget.php:106
 msgid "YouTube video ID:"
 msgstr "YouTube-Video-ID:"
 
-#: falconiform-youtube-widget.php:116
+#: falconiform-youtube-widget.php:115
 msgid "Index of the video ID from dedicated settings page:"
 msgstr "Nummer einer Video-ID aus den separaten Einstellungen:"
 
-#: falconiform-youtube-widget.php:126
+#: falconiform-youtube-widget.php:125
 msgid "Take video from dedicated settings page via index."
 msgstr "Video aus den separaten Einstellungen verwenden."
 
-#: falconiform-youtube-widget.php:136
+#: falconiform-youtube-widget.php:135
 msgid "Player width (in pixel, 0 for automatic width):"
 msgstr "Player-Breite (in Pixel, 0 für automatische Breite):"
 
-#: falconiform-youtube-widget.php:145
+#: falconiform-youtube-widget.php:144
 msgid "Player height (in pixel, 0 for automatic height):"
 msgstr "Player-Höhe (in Pixel, 0 für automatische Höhe):"
 
-#: falconiform-youtube-widget.php:154
+#: falconiform-youtube-widget.php:153
 msgid "Player theme:"
 msgstr "Player-Theme"
 
-#: falconiform-youtube-widget.php:160
+#: falconiform-youtube-widget.php:159
 msgid "Dark"
 msgstr "Dunkel"
 
-#: falconiform-youtube-widget.php:161
+#: falconiform-youtube-widget.php:160
 msgid "Light"
 msgstr "Hell"
 
-#: falconiform-youtube-widget.php:167
+#: falconiform-youtube-widget.php:166
 msgid "Color of the player’s video progress bar:"
 msgstr "Farbe der Zeitleiste im Player:"
 
-#: falconiform-youtube-widget.php:173
+#: falconiform-youtube-widget.php:172
 msgid "Red"
 msgstr "Rot"
 
-#: falconiform-youtube-widget.php:174
+#: falconiform-youtube-widget.php:173
 msgid "White"
 msgstr "Weiß"
 
-#: falconiform-youtube-widget.php:180
+#: falconiform-youtube-widget.php:179
 msgid "Player controls visibility:"
 msgstr "Sichtbarkeit Player-Steuerelemente:"
 
-#: falconiform-youtube-widget.php:186
+#: falconiform-youtube-widget.php:185
 msgid ""
 "Display controls, Flash player loads after user initiates video playback"
 msgstr "Steuerelemente anzeigen, Flash-Player lädt erst beim Abspielen"
 
-#: falconiform-youtube-widget.php:187
+#: falconiform-youtube-widget.php:186
 msgid "Display controls, Flash player loads immediately"
 msgstr "Steuerelemente anzeigen, Flash-Player lädt sofort"
 
-#: falconiform-youtube-widget.php:188
+#: falconiform-youtube-widget.php:187
 msgid "Hide controls, Flash player loads immediately"
 msgstr "Steuerelemente ausblenden, Flash-Player lädt sofort"
 
-#: falconiform-youtube-widget.php:194
+#: falconiform-youtube-widget.php:193
 msgid "Hide controls / progress bar at playback:"
 msgstr "Steuerelemente / Zeitleiste beim Abspielen:"
 
-#: falconiform-youtube-widget.php:200
+#: falconiform-youtube-widget.php:199
 msgid "Show controls, decrease progress bar"
 msgstr "Steuerelemente anzeigen, Zeitleiste verkleinern"
 
-#: falconiform-youtube-widget.php:201
+#: falconiform-youtube-widget.php:200
 msgid "Hide controls, hide progress bar"
 msgstr "Steuerelemente ausblenden, Zeitleiste ausblenden"
 
-#: falconiform-youtube-widget.php:202
+#: falconiform-youtube-widget.php:201
 msgid "Show controls, show progress bar"
 msgstr "Steuerelemente anzeigen, Zeitleiste anzeigen"
 
-#: falconiform-youtube-widget.php:208
+#: falconiform-youtube-widget.php:207
 msgid "Start playback automatically."
 msgstr "Video automatisch abspielen."
 
-#: falconiform-youtube-widget.php:218
+#: falconiform-youtube-widget.php:217
 msgid "Restart the video automatically after playback ends."
 msgstr "Video nach Ende neustarten."
 
-#: falconiform-youtube-widget.php:228
+#: falconiform-youtube-widget.php:227
 msgid "Show related videos after playback ends."
 msgstr "Ähnliche Videos am Ende anzeigen."
 
-#: falconiform-youtube-widget.php:238
+#: falconiform-youtube-widget.php:237
 msgid "Show video information like the video title."
 msgstr "Video-Informationen wie Video-Titel anzeigen."
 
-#: falconiform-youtube-widget.php:248
+#: falconiform-youtube-widget.php:247
 msgid "Show video annotations."
 msgstr "Video-Anmerkungen anzeigen."
 
-#: falconiform-youtube-widget.php:258
+#: falconiform-youtube-widget.php:257
 msgid "Show fullscreen button."
 msgstr "Vollbild-Schaltfläche anzeigen."
 
-#: falconiform-youtube-widget.php:268
+#: falconiform-youtube-widget.php:267
 msgid "Hide YouTube logo in the controls bar."
 msgstr "YouTube-Logo bei den Steuerelementen ausblenden."
 
-#: falconiform-youtube-widget.php:278
+#: falconiform-youtube-widget.php:277
 msgid "Disable keyboard control for the player."
 msgstr "Tastatur-Steuerung deaktivieren."
 
-#: falconiform-youtube-widget.php:341
+#: falconiform-youtube-widget.php:342
 msgid "Dedicated Video Settings"
 msgstr "Separate Video-Einstellungen"
 
-#: falconiform-youtube-widget.php:343
+#: falconiform-youtube-widget.php:344
 msgid "YouTube Video IDs"
 msgstr "YouTube-Video-IDs"
 
-#: falconiform-youtube-widget.php:387
+#: falconiform-youtube-widget.php:388
 #, php-format
 msgid "The video ID at index %s has an invalid format."
 msgstr "Die Video-ID mit der Nummer %s hat ein ungültiges format."
 
-#: falconiform-youtube-widget.php:397
+#: falconiform-youtube-widget.php:398
 msgid "Settings updated successfully."
 msgstr "Einstellungen erfolgreich aktualisiert."
 
-#: falconiform-youtube-widget.php:400
+#: falconiform-youtube-widget.php:401
 msgid "Settings updated, but some errors occurred."
 msgstr "Einstellungen aktualisiert, allerdings sind Fehler aufgetreten."
 
-#: falconiform-youtube-widget.php:423
+#: falconiform-youtube-widget.php:424
 msgid "A YouTube video link (URL) or video ID or blank."
 msgstr "Ein Link (URL) oder die ID zum YouTube-Video oder leer lassen."
 
-#: falconiform-youtube-widget.php:434
+#: falconiform-youtube-widget.php:435
 #, php-format
 msgid "Video ID %s:"
 msgstr "Video-ID Nummer %s:"
 
-#: falconiform-youtube-widget.php:447
+#: falconiform-youtube-widget.php:448
 msgid "Falconiform YouTube Widget"
 msgstr "Falconiform YouTube Widget"
 
-#: falconiform-youtube-widget.php:448
+#: falconiform-youtube-widget.php:449
 msgid "YouTube Widget"
 msgstr "YouTube-Widget"
 
-#: falconiform-youtube-widget.php:463
+#: falconiform-youtube-widget.php:464
 msgid "YouTube Widget Dedicated Settings"
 msgstr "Separate Einstellungen fürs YouTube-Widget"
 
-#: falconiform-youtube-widget.php:539
+#: falconiform-youtube-widget.php:548
 msgid "No video selected."
 msgstr "Es wurde keine Video ausgewählt."
 
-#: falconiform-youtube-widget.php:556
+#: falconiform-youtube-widget.php:565
 msgid "The video cannot be shown. Your web browser does not support iFrames."
 msgstr ""
 "Das Video kann nicht angezeigt werden. Ihr Webbrowser unterstützt keine "
 "iFrames."
 
-#: falconiform-youtube-widget.php:718
+#: falconiform-youtube-widget.php:727
 msgid "Get more information about the YouTube player parameters."
 msgstr ""
 "Mehr Informationen über die Einstellungen des YouTube-Players erhalten."
