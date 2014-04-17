@@ -85,7 +85,7 @@ Yes. The YouTube player is loaded in an iFrame, which has the css class `.ff-you
 
 == Changelog ==
 
-= 1.0.0 =
+= 1.0.1 =
 * Fixed an issue where the YouTube Widget was not shown in the live widget preview.
 
 = 1.0.0 =
@@ -93,7 +93,7 @@ Yes. The YouTube player is loaded in an iFrame, which has the css class `.ff-you
 
 == Upgrade Notice ==
 
-= 1.0.0 =
+= 1.0.1 =
 * Fixed an issue where the YouTube Widget was not shown in the live widget preview.
 
 = 1.0.0 =
