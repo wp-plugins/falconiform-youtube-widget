@@ -3,7 +3,7 @@ Contributors: raubvogel
 Donate link: http://fabulierer.de/
 Tags: YouTube, widget, video, sidebar, player, Editor, permissions
 Requires at least: 3.8
-Tested up to: 3.9
+Tested up to: 4.0
 Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -85,7 +85,7 @@ Yes. The YouTube player is loaded in an iFrame, which has the css class `.ff-you
 
 == Changelog ==
 
-= 1.0.0 =
+= 1.0.1 =
 * Fixed an issue where the YouTube Widget was not shown in the live widget preview.
 
 = 1.0.0 =
@@ -93,7 +93,7 @@ Yes. The YouTube player is loaded in an iFrame, which has the css class `.ff-you
 
 == Upgrade Notice ==
 
-= 1.0.0 =
+= 1.0.1 =
 * Fixed an issue where the YouTube Widget was not shown in the live widget preview.
 
 = 1.0.0 =
